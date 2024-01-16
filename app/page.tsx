@@ -11,22 +11,13 @@ const Homepage = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState();
 
-  const images = [
-    "https://placekitten.com/300/200",
-    "https://placekitten.com/301/200",
-    "https://placekitten.com/302/200",
-    "https://placekitten.com/302/200",
-    "https://placekitten.com/302/200",
-  ];
-
   const getList = async () => {
     try {
       const response = await ListPoke.list(limit, page);
 
       if (response) {
-        setData(response.data);
+        setData(response.data.data);
         console.log(response);
-        
       }
 
       return response;
@@ -70,10 +61,10 @@ const Homepage = () => {
         </button>
       </div>
       <div className="grid grid-cols-4 gap-4">
-        {images.map((imageUrl, index) => (
+        {data?.map((imageUrl, index) => (
           <div key={index} className="bg-white p-4 rounded-md shadow-md">
             <img
-              src={imageUrl}
+              src={imageUrl.image}
               alt={`Image ${index + 1}`}
               className="w-full h-48 object-cover rounded-md"
             />

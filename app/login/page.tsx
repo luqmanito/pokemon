@@ -56,7 +56,7 @@ export default function Home() {
       if (response) {
         toast.success("Login successfully");
         router.push("/")
-        const accessToken = response.data.access_token;
+        const accessToken = response.data.data.access_token;
         localStorage.setItem('accessToken', accessToken);
 
         console.log(response);
